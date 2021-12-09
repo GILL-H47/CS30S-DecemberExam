@@ -4,28 +4,33 @@
  *
  * Assignment: December Exam Payroll
  *
- * Description: brief description of class
+ * Description: Class for Employee
  ***********************************************************************/
 
 // import libraries as needed here
 
-public class Employee_Class {
+public class Employee_Class{
     //*** Class Variables ***
 
-    private static int nextID = 1000;       // unique id
+    private static int nextID = 1000;             // unique id
+    private static double OvertimePay = 1.5;
 
     //*** Instance Variables ***
 
-    private int id = 0;              // employee id number
-    private int Hours = 0;           // number of hours worked by the employee 
-    private double Wage = 0.0;       // wage of the employee  
-
+    private int id = 0;                           // employee id number
+    private int Hours = 0;                        // number of hours worked by the employee
+    private double Wage = 0.0;                    // wage of the employee  
+    private double RegularPay = 0.0;
+    private double overtimepay = 0.0;
+    private double TotalOtHours = 0.0;
+    private double grosspay = 0.0;
+    
     //*** Constructors ***
 
     public Employee_Class(){
-        id = nextID++;                      // set unique id of cirlce object
-        // and increment nextID so the next object
-        // gets a unique id number
+        id = nextID++;                  // set unique id of cirlce object
+                                        // and increment nextID so the next object
+                                        // gets a unique id number
         Hours = 0;              // number of hours worked by the employee
         Wage = 0.0;             // wage of the employee
 
@@ -73,7 +78,7 @@ public class Employee_Class {
      * ****************************************/
     public int getHours(){
         return Hours;
-    }// end gethours
+    }// end getHours
 
     /*****************************************
      * Description: get employee wage
@@ -84,7 +89,7 @@ public class Employee_Class {
      * ****************************************/
     public double getWage(){
         return Wage;
-    }// end gethours
+    }// end getWage
 
     //*** Setters ***
 
@@ -97,7 +102,7 @@ public class Employee_Class {
      * ****************************************/
     public void setHours(int Hours){
         this.Hours = Hours;
-    }// end sethours
+    }// end setHours
 
     /*****************************************
      * Description: set the value of the wage
@@ -108,28 +113,77 @@ public class Employee_Class {
      * ****************************************/
     public void setWage(double Wage){
         this.Wage = Wage;
-    }// end setwage
-    
+    }// end setWage
+
     // other methods
     
+    //Calculations For Regular, Ovaertime, And Gross Pay
     /*****************************************
-    * Description: over ride to string
+     * Description: get Regular Pay
+     * 
+     * Interface:
+     * 
+     * @return       double: Regular Pay
+     * ****************************************/
+    public double getRegularPay(){
+        double RegularPay;
+        if(Hours <= 40){
+            RegularPay = Wage * Hours;
+        }
+        else{
+            RegularPay = Wage * 40;
+        }
+        return RegularPay;
+    }// end getReguarPay
+    
+    /*****************************************
+     * Description: get Overtime pay
+     * 
+     * Interface:
+     * 
+     * @return       double: Overtime pay
+     * ****************************************/
+    public double getOvertimePay(){
+        if(Hours > 40){
+            TotalOtHours = Hours - 40;
+            OvertimePay = Wage * TotalOtHours * OvertimePay;
+        }
+        else{
+            OvertimePay = 0;
+        }
+        return OvertimePay;
+    }// end getOvertimePay
+    
+    /*****************************************
+    * Description: get Gross pay
     * 
     * Interface:
     * 
-    * @return       String: circle state
+    * @return       double: Gross pay
     * ****************************************/
+    public double getGrossPay(){
+       double GrossPay;
+       GrossPay = this.getRegularPay() + this.getOvertimePay();
+       return GrossPay;
+    }// end getOTPay
+    
+    /*****************************************
+     * Description: over ride to string
+     * 
+     * Interface:
+     * 
+     * @return       String: circle state
+     * ****************************************/
     @Override
     public String toString(){
         String nl = System.lineSeparator(); 
-        
+
         StringBuilder s = new StringBuilder();
-        
+
         s.append(String.format("%-10s%10d%s", "Employee:", this.getId(), nl));
         s.append(String.format("%-10s%10.3f%s", "Hours:", this.getHours(), nl));
         s.append(String.format("%-10s%10.3f%s", "Hourly Wage:", this.getWage(), nl));
-        
+
         return s.toString();
     }// end toString
-    
 } // end of public class
