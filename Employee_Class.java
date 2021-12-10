@@ -20,11 +20,11 @@ public class Employee_Class{
     private int id = 0;                           // employee id number
     private int Hours = 0;                        // number of hours worked by the employee
     private double Wage = 0.0;                    // wage of the employee  
-    private double RegularPay = 0.0;
-    private double overtimepay = 0.0;
-    private double TotalOtHours = 0.0;
-    private double grosspay = 0.0;
-    
+    private double RegularPay = 0.0;              // regular pay of the employee
+    private double overtimepay = 0.0;             // overtime pay for employee overtime hours
+    private double TotalOtHours = 0.0;            // total overtime hours employee has worked
+    private double grosspay = 0.0;                // gross pay of the employee
+
     //*** Constructors ***
 
     public Employee_Class(){
@@ -33,7 +33,6 @@ public class Employee_Class{
                                         // gets a unique id number
         Hours = 0;              // number of hours worked by the employee
         Wage = 0.0;             // wage of the employee
-
     }// end defult/no-arg constructor 
 
     // full arg constructor
@@ -42,7 +41,6 @@ public class Employee_Class{
 
         this.Hours = h;
         this.Wage = w;
-
     }// end defult/no-arg constructor 
 
     /*****************************************
@@ -116,8 +114,8 @@ public class Employee_Class{
     }// end setWage
 
     // other methods
-    
-    //Calculations For Regular, Ovaertime, And Gross Pay
+
+    //Calculations for Regular, Ovaertime, and Gross Pay
     /*****************************************
      * Description: get Regular Pay
      * 
@@ -135,7 +133,7 @@ public class Employee_Class{
         }
         return RegularPay;
     }// end getReguarPay
-    
+
     /*****************************************
      * Description: get Overtime pay
      * 
@@ -153,37 +151,35 @@ public class Employee_Class{
         }
         return OvertimePay;
     }// end getOvertimePay
-    
+
     /*****************************************
-    * Description: get Gross pay
-    * 
-    * Interface:
-    * 
-    * @return       double: Gross pay
-    * ****************************************/
+     * Description: get Gross pay
+     * 
+     * Interface:
+     * 
+     * @return       double: Gross pay
+     * ****************************************/
     public double getGrossPay(){
-       double GrossPay;
-       GrossPay = this.getRegularPay() + this.getOvertimePay();
-       return GrossPay;
-    }// end getOTPay
-    
+        double GrossPay;
+        GrossPay = this.getRegularPay() + this.getOvertimePay();
+        return GrossPay;
+    }// end getGrossPay
+
+    // to String
     /*****************************************
      * Description: over ride to string
      * 
      * Interface:
      * 
-     * @return       String: circle state
+     * @return
      * ****************************************/
-    @Override
+    @Override 
     public String toString(){
-        String nl = System.lineSeparator(); 
+      
+      StringBuilder st = new StringBuilder();
+      
+      st.append(String.format("%s%-5d%s%3d%11s%.2f%5s%.2f%5s%.2f%5s%.2f", "", this.getId(), " " , this.getHours()," $", this.getWage(), " $", this.getRegularPay(), " $", this.getOvertimePay(), " $",this.getGrossPay()));
+      return st.toString();
 
-        StringBuilder s = new StringBuilder();
-
-        s.append(String.format("%-10s%10d%s", "Employee:", this.getId(), nl));
-        s.append(String.format("%-10s%10.3f%s", "Hours:", this.getHours(), nl));
-        s.append(String.format("%-10s%10.3f%s", "Hourly Wage:", this.getWage(), nl));
-
-        return s.toString();
-    }// end toString
+    }// end of ToString 
 } // end of public class
