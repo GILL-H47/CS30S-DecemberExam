@@ -85,7 +85,7 @@ public class Employee_Driver {
         Employees.get(1).setWage(20.50);
 
         // getters to print the employees
-        System.out.println(nl + "Here are some employees printed using getters");
+        System.out.println(nl + "Here are some employees");
         System.out.println(Employees.get(1).getId());
         System.out.println(Employees.get(1).getHours());
         System.out.println(Employees.get(1).getWage());
