@@ -29,10 +29,10 @@ public class Employee_Class{
 
     public Employee_Class(){
         id = nextID++;                  // set unique id of cirlce object
-                                        // and increment nextID so the next object
-                                        // gets a unique id number
-        Hours = 0;              // number of hours worked by the employee
-        Wage = 0.0;             // wage of the employee
+        // and increment nextID so the next object
+        // gets a unique id number
+        this.Hours = 0;              // number of hours worked by the employee
+        this.Wage = 0.0;             // wage of the employee
     }// end defult/no-arg constructor 
 
     // full arg constructor
@@ -143,8 +143,7 @@ public class Employee_Class{
      * ****************************************/
     public double getOvertimePay(){
         if(Hours > 40){
-            TotalOtHours = Hours - 40;
-            OvertimePay = Wage * TotalOtHours * OvertimePay;
+            OvertimePay = (Hours - 40) * Wage * 1.5;
         }
         else{
             OvertimePay = 0;
@@ -175,11 +174,11 @@ public class Employee_Class{
      * ****************************************/
     @Override 
     public String toString(){
-      
-      StringBuilder st = new StringBuilder();
-      
-      st.append(String.format("%s%-5d%s%3d%11s%.2f%5s%.2f%5s%.2f%5s%.2f", "", this.getId(), " " , this.getHours()," $", this.getWage(), " $", this.getRegularPay(), " $", this.getOvertimePay(), " $",this.getGrossPay()));
-      return st.toString();
+
+        StringBuilder st = new StringBuilder();
+
+        st.append(String.format("%s%-5d%s%3d%11s%.2f%5s%.2f%5s%.2f%5s%.2f", "", this.getId(), " " , this.getHours()," $", this.getWage(), " $", this.getRegularPay(), " $", this.getOvertimePay(), " $",this.getGrossPay()));
+        return st.toString();
 
     }// end of ToString 
 } // end of public class

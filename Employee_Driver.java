@@ -41,17 +41,15 @@ public class Employee_Driver {
 
         // file io buffers for reading and writing to text files
 
-        BufferedReader fin = new BufferedReader(new FileReader("EmployeeDecemberExamData.txt"));
+        //BufferedReader fin = new BufferedReader(new FileReader("EmployeeDecemberExamData.txt"));
         //PrintWriter fout = new PrintWriter(new BufferedWriter(new FileWriter("outfle.txt")));
 
         // ***** print banners *****
 
-        banner = "*****************************" + nl;
-        banner += "Name:        Harmeet Gill" + nl;
-        banner += "Class:       CS30S" + nl;
-        banner += "Assignment:  December Exam Payroll" + nl;
-        banner += "*****************************" + nl + nl;
-
+        ProgramInfo PI = new ProgramInfo("December Exam");
+        
+        System.out.println(PI.getBanner());
+        
         System.out.println(banner);
         //fout.print(banner);
 
@@ -79,10 +77,6 @@ public class Employee_Driver {
         for(Employee_Class emp: Employees){
             System.out.println(emp.toString());
         }// end for
-        
-        // setters to change the value
-        Employees.get(1).setHours(34);
-        Employees.get(1).setWage(20.50);
 
         // getters to print the employees
         System.out.println(nl + "Here are some employees");
@@ -93,11 +87,15 @@ public class Employee_Driver {
         System.out.println(Employees.get(1).getOvertimePay());
         System.out.println(Employees.get(1).getGrossPay());
 
+        // setters to change the value
+        Employees.get(1).setHours(34);
+        Employees.get(1).setWage(20.50);
+
         // removing employees from the payroll
         System.out.println(nl + "Employee:" + Employees.get(0).getId() + " Removed from the Payroll");
         System.out.println(Employees.remove(0) + nl);
 
-        // printing the employee rayrolls again
+        // printing the employee payrolls again
         System.out.println("ID: Hours: Wage: Regular Pay: Overtime Pay: Gross Pay:");
         for(Employee_Class e: Employees){
             System.out.println(e.toString());
@@ -107,7 +105,7 @@ public class Employee_Driver {
         // ***** Closing Message *****
 
         System.out.println();
-        System.out.println("end of processing");
+        System.out.println(PI.getClosingMessage());
         //fout.println("End of Processing");
 
         // **** close io buffers *****
